@@ -119,10 +119,8 @@ module Xeroizer
     def body
       response_code = response.code.to_i
 
-      if defined? Rails
-        Rails.logger.info "=== START XERO RESPONSE ==="
-        Rails.logger.info response.plain_body
-        Rails.logger.info "==== END XERO RESPONSE ===="
+      if defined?(Rails) and ENV['XERO_RESPONSE_LOG_ENABLED'] == 'yes'
+        Rails.logger.info "[XERO][RESPONSE] #{{code: response.code, body: response.plain_body}}"
       end
 
       return nil if response_code == 204
