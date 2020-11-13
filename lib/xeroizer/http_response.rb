@@ -119,7 +119,7 @@ module Xeroizer
     def body
       response_code = response.code.to_i
 
-      if defined?(Rails) and ENV['XERO_RESPONSE_LOG_ENABLED'] == 'yes'
+      if defined?(Rails) and ENV['XERO_DEBUG_ENABLED'] == 'yes'
         Rails.logger.info "[XERO][RESPONSE] #{{code: response.code, body: response.plain_body}}"
       end
 
